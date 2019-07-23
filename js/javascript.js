@@ -38,7 +38,7 @@ function initBtnMain(){
 				myApp.preloader.show();
 				$.ajax({
 					method:"POST",
-					url:"http://nfinic.com/nicole/envoibornes.php",
+					url:"****************/envoibornes.php",
 					data:{data:bornesParcelle},
 					success:function(data){
 						myApp.preloader.hide();
