@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Land-B-Reg</title>
+			<meta charset="utf-8">
+		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		    <meta name="apple-mobile-web-app-capable" content="yes">
+		    <meta name="apple-mobile-web-app-status-bar-style" content="black">  
+		</head>
+		
+		<body class="framework7-root layout-null color-theme-green">
+			<style type="text/css">
+				@import url("lib/fw7/css/framework7.min.css");
+				@import url("lib/framework7.md.icons.css");
+				@import url("lib/framework7.icons.css");
+				
+				#bottomMenus{
+					position:absolute;
+					bottom:0px;
+					width:100%;
+					padding:8px;
+					box-shadow:0px -1px 20px #d7d7d7;
+					background:#f7f7f7;
+				}
+				
+				#bottomMenus a{
+					font-size:17px;
+				}
+				
+				#displaySelectedRegion>.item-after{
+					display:none;
+				}
+				
+				#zoneNouvelles .item-text-urgence{
+					font-size:14px;
+					text-align: justify;
+				}
+				
+				#zoneNouvelles li{
+					padding-left: 15px;
+				}
+				
+				#zoneNouvelles .item-date-nouvelle{
+					font-size:12px;
+					background:#F7F7F7;
+					display: inline-block;
+					padding:3px;
+					color:green;
+				}
+				
+				#zoneNouvelles .item-name-of-publisher{
+					font-weight:700;
+				}
+				
+				#zoneNouvelles .item-titre-du-message{
+					font-weight:500;
+				}
+				
+				.numeroTelephoneUrgence{
+					background:#f7f7f7;	
+				}
+				
+				.numeroTelephoneUrgence .nomService{
+					font-size:20px;
+					font-weight:600;
+				}
+				
+				.numeroTelephoneUrgence .numeroTelephoneService{
+					font-size:16px;
+					font-weight:500;
+				}
+				
+				.coordonneesGeographique{
+					display:none;
+				}
+				
+				.popover{
+					left:29px!important;
+				}
+			</style>
+			<script type="text/javascript" src="cordova.js"></script>
+   	 		<div id="app">
+   	 			<div class="statusbar"></div>
+   	 			<div class="view main-view">
+						<!-- do not modify this section -->
+   	 					<div class="page navbar-fixed toolbar-fixed" id="gdrMainPage" data-name="gdrMainPage">
+   	 						<div class="navbar">
+								<div class="navbar-inner">
+									<div class="left" style="padding-left:10px;"><a href="/apropos/">Land-B-Reg</a></div>
+									<div class="right">
+										<a href="#" data-popup=".aide-popup" id="rechargerNumerosDeTelephone" class="link popup-open">
+											<i class="icon material-icons">info</i>
+										</a>
+										<!--<a href="/nouvelles/" class="link">
+											<i class="icon material-icons">notifications<span class="badge color-black">5</span></i>
+										</a>
+										
+										<a href="#" data-popover="#myPopup" class="link open-popover">
+											<i class="icon material-icons">settings</i>
+										</a> -->
+									</div>
+								</div>
+							</div>
+							
+							<div class="popover" id="popoverIdDeLaParcelle">
+								<div class="popover-inner" style="padding:10px;text-align:center;">
+									ID des coordonn&eacute;es de la parcelle
+									<h1 style="border-top:1px solid #d7d7d7;">893</h1>
+									<div><small>Rassurez-vous d'avoir communiqu&eacute; cet identifiant &agrave; l'op&eacute;rateur.</small></div>
+									<div>
+										<button class="button popover-close button-fill color-orange">Fermer</button>
+									</div>
+									
+								</div>
+							</div>
+							
+   	 						<div class="page-content infinite-scroll" id="gdrMainPageContent">
+								<div class="block">Obtenir coordonn&eacute;es g&eacute;ographiques de la parcelle</div>
+								
+								<div id="zoneDisplay" style="text-align: center;">	
+										<div class="block numeroTelephoneUrgence" style="padding-bottom: 20px;padding-top:5px;">
+											<div class="nomService"><i class="material-icons">add_location</i> Borne 1</div>
+											<div class=""><button numero="0" class="button button-fill color-gray btnObtenirCoordonneesGeographique">Obtenir coordonn&eacute;es</button></div>
+											<div class="coordonneesGeographique">
+												
+											</div>
+										</div>
+										
+										<div class="block numeroTelephoneUrgence" style="padding-bottom: 20px;padding-top:5px;">
+											<div class="nomService"><i class="material-icons">add_location</i> Borne 2</div>
+											<div class=""><button numero="1" class="button button-fill color-gray btnObtenirCoordonneesGeographique">Obtenir coordonn&eacute;es</button></div>
+											<div class="coordonneesGeographique">
+												
+											</div>
+										</div>
+										
+										<div class="block numeroTelephoneUrgence" style="padding-bottom: 20px;padding-top:5px;">
+											<div class="nomService"><i class="material-icons">add_location</i> Borne 3</div>
+											<div class=""><button numero="2" class="button button-fill color-gray btnObtenirCoordonneesGeographique">Obtenir coordonn&eacute;es</button></div>
+											<div class="coordonneesGeographique">
+												
+											</div>
+										</div>
+										
+										<div class="block numeroTelephoneUrgence" style="padding-bottom: 20px;margin-bottom:3cm;padding-top:5px;">
+											<div class="nomService"><i class="material-icons">add_location</i> Borne 4</div>
+											<div class=""><button numero="3" class="button button-fill color-gray btnObtenirCoordonneesGeographique">Obtenir coordonn&eacute;es</button></div>
+											<div class="coordonneesGeographique">
+												
+											</div>
+										</div>
+										
+										
+								</div>
+								
+   	 						</div>
+   	 						
+   	 						<div id="btnAnnulerEnregistrement" class="fab fab-extended fab-left-bottom color-red">
+							  <a href="#">
+							    <i class="icon material-icons">cancel</i>
+							    <!-- Element with FAB text  -->
+							    <div class="fab-text">Annuler</div>
+							  </a>
+							</div>
+   	 						
+   	 						<div id="btnEnvoyerEnregistrement" class="fab fab-extended fab-right-bottom">
+							  <a href="#">
+							    <i class="icon material-icons">trending_up</i>
+							    <!-- Element with FAB text  -->
+							    <div class="fab-text">Envoyer</div>
+							  </a>
+							</div>
+   	 						
+   	 						
+   	 						<div class="popup aide-popup" style="display: none;">
+						      <div class="page">
+						        <div class="navbar">
+						          <div class="navbar-inner">
+						          	<div class="left">
+						          		<a class=" link icon-only popup-close"><i class="icon icon-back material-icons">back</i></a>
+						          		<div class="title">&Agrave; propos</div>
+						          	</div>
+						            
+						          </div>
+						        </div>
+						        <div class="page-content">
+						          <div class="block">
+						          	Land-B-Reg a &eacute;t&eacute; con&ccedil;u dans le cadre du projet du m&eacute;moire intitul&eacute; "Conception et r&eacute;alisation d'un syst&egrave;me d'enregistrement d'informations fonci&egrave;res bas&eacute; sur la Blockchain".
+						          </div>
+						          
+						          <div class="block">
+						          	Cette partie du syst&eacute;me permet la collection des donn&eacute;es parcelaires qui sont ensuite enregistr&eacute;es sur la blockchain.
+						          </div>
+						          
+						          <div class="block">
+						          	Ce travail &agrave; &eacute;t&eacute; r&eacute;alis&eacute; par Mbambu Musimbi Nicole &agrave; l'ann&eacute;e acad&eacute;mique 2018-2019 &agrave; l'Universit&eacute; Chr&eacute;tienne Bilingue du Congo.
+						          </div>
+						        </div>
+						      </div>
+						    </div>
+   	 						
+   	 					</div>
+   	 					
+   	 					
+   	 			</div>
+   	 			
+   	 			
+   	 			
+			</div>
+			
+			<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="lib/fw7/js/framework7.min.js"></script>
+			<script type="text/javascript">
+				
+				var myApp = new Framework7({
+					modalTitle : 'Gridlet', //Enable Material theme
+					root:"#app",
+					material : true,
+					theme:"md",
+					routes:[],
+					init:true,
+					on:{
+						init:function(){
+							console.log("Wonderful");
+						}
+					}
+				});
+				
+				
+				var $$ = Dom7;
+				
+				
+				var mainView = myApp.views.create('.main-view', {
+					domCache : true, //enable inline pages
+					iosDynamicNavbar: false
+				});
+				
+				var $$$ = Framework7.request;
+				
+			</script>
+			<script type="text/javascript" src="js/javascript.js"></script>
+		</body>
+	</html>
